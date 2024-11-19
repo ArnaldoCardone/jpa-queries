@@ -9,6 +9,7 @@ import com.devsuperior.demo.entities.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
+	// Incluir a clausula JOIN FETCH para evitar consultas redundantes na base de dados
 	@Query(value = "SELECT obj FROM Product obj JOIN FETCH obj.categories")
 	List<Product> searchAll();
 }

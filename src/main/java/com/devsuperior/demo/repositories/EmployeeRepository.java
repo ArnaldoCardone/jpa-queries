@@ -13,7 +13,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 	@Query(value = "SELECT obj FROM Employee obj JOIN FETCH obj.department")
 	List<Employee> searchAll();
-	
+
+	//Consulta paginada com entidades relacionadas, incluir o countQuery para que o JPA va somente uma vez ao banco
 	@Query(value = "SELECT obj FROM Employee obj JOIN FETCH obj.department",
 			countQuery = "SELECT COUNT(obj) FROM Employee obj JOIN obj.department")
 	Page<Employee> searchAll(Pageable pageable);
